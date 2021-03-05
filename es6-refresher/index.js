@@ -54,3 +54,41 @@ class Person extends Human{
 const person = new Person();
 person.printMyName();
 person.printGender();
+
+/**
+ * * Classes, Properties and Methods
+ * * Properties are like 'variables attached to classes/objects'
+ * * Methods are like 'functions attached to classes/objects'
+ */
+
+//* ES6 properties
+
+constructor() {
+  this.myProperty = 'value'
+}
+
+//* ES7 properties
+
+myProperty = 'value'
+
+//* ES6 Methods
+
+myMethod() {...}
+
+//* ES7 methods (elimates issues with the 'this' keyword)
+
+myMethod = () => {...}
+
+/**
+ * * Spread & Rest Operators
+ * * Spread operator (...) - Used to split up array elements OR object properties
+ * * Rest operator (...args) - used to merge a list of function arguments into an array
+ */
+
+/**
+ * * Destructuring
+ * * Allows you to extract elements or object properties and store them in variables
+ */
+
+const numbers = [1, 2, 3];
+[num1, num2] = numbers;
