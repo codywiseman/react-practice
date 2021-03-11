@@ -41,6 +41,19 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer'
     }
+
+    let persons = null;
+
+    if( this.state.showPersons ) {
+      <div>
+        {this.state.persons.map(person => {
+          return <Person
+            name={person.name}
+            age={person.age}  />
+        })}
+      </div>
+    }
+
     return (
        //* React converts the below JSX to HTML.
       <div className="App">
@@ -49,23 +62,7 @@ class App extends Component {
           onClick={this.togglePersonHandler}
           style={style}>Switch Name
         </button>
-        {
-          this.state.showPersons ?
-            <div>
-            <Person
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age} >My Hobbies: Coding</Person>
-            <Person
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age} />
-            <Person
-              name={this.state.persons[2].name}
-              age={this.state.persons[2].age}
-              click={this.swithNameHandler.bind(this, 'Allie!')}
-              changed={this.nameChangedHandler} />
-          </div>
-          : null
-        }
+        { persons }
       </div>
       // * JSX gets compiled into the React code below. That is why we import React. JSX code calls React.createElement()
     //  React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!!!'))
@@ -78,7 +75,7 @@ export default App;
 
 /*
 const app = props => {
-  // useState can be used as many times as you want
+  useState can be used as many times as you want
   const [ personsState, setPersonsState ] = useState({
     persons: [
       { name: 'Cody', age: 26 },
@@ -88,7 +85,7 @@ const app = props => {
   })
   const switchNameHandler = () => {
     setPersonsState({
-      // Changing state this way does not automatically merge the other data in state
+      Changing state this way does not automatically merge the other data in state
       persons: [
         { name: 'Cody', age: 2 },
         { name: 'Allison', age: 30 },
@@ -112,8 +109,8 @@ const app = props => {
         name={personsState.persons[2].name}
         age={personsState.persons[2].age} />
     </div>
-    // * JSX gets compiled into the React code below. That is why we import React.
-  //  React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!!!'))
+     * JSX gets compiled into the React code below. That is why we import React.
+    React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!!!'))
   );
 }
 */
