@@ -5,9 +5,9 @@ import Person from './Person/Person'
 class App extends Component {
   state = {
     persons: [
-      { name: 'Cody', age: 26 },
-      { name: 'Allie', age: 30 },
-      { name: 'Nathan', age: 35 }
+      { id: 'eWefdweji', name: 'Cody', age: 26 },
+      { id: 'aejriom38', name: 'Allie', age: 30 },
+      { id: 'adedqwer', name: 'Nathan', age: 35 }
     ],
     showPersons: false
   }
@@ -29,6 +29,13 @@ class App extends Component {
       ]
     })
   }
+
+  deletePersonHandler = (personIndex) => {
+    const persons = [...this.state.persons];
+    persons.splice(personIndex, 1);
+    this.setState({ persons: persons })
+  }
+
   togglePersonHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({ showPersons: !doesShow })
@@ -45,13 +52,17 @@ class App extends Component {
     let persons = null;
 
     if( this.state.showPersons ) {
-      <div>
-        {this.state.persons.map(person => {
-          return <Person
-            name={person.name}
-            age={person.age}  />
-        })}
-      </div>
+      persons = (
+        <div>
+          {this.state.persons.map((person, index) => {
+            return <Person
+              click={() => this.deletePersonHandler(index)}
+              name={person.name}
+              age={person.age}
+              key={person.id} />
+          })}
+        </div>
+      )
     }
 
     return (
@@ -62,7 +73,7 @@ class App extends Component {
           onClick={this.togglePersonHandler}
           style={style}>Switch Name
         </button>
-        { persons }
+        {persons}
       </div>
       // * JSX gets compiled into the React code below. That is why we import React. JSX code calls React.createElement()
     //  React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!!!'))
