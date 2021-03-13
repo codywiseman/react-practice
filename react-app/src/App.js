@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person'
 
 class App extends Component {
@@ -56,12 +56,20 @@ class App extends Component {
       border: '1px solid black',
       padding: '8px',
       cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     }
 
     let persons = null;
 
     if( this.state.showPersons ) {
       style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+          color: 'black'
+      }
       persons = (
         <div>
           {this.state.persons.map((person, index) => {
@@ -86,17 +94,19 @@ class App extends Component {
 
     return (
        //* React converts the below JSX to HTML.
-      <div className="App">
-        <h1> Hi, I'm a React App</h1>
-        <p className={classes.join(' ')}>This is working!</p>
-        <button
-          onClick={this.togglePersonHandler}
-          style={style}>Switch Name
+      <StyleRoot >
+        <div className="App">
+          <h1> Hi, I'm a React App</h1>
+          <p className={classes.join(' ')}>This is working!</p>
+          <button
+            onClick={this.togglePersonHandler}
+            style={style}>Switch Name
         </button>
-        {persons}
-      </div>
-      // * JSX gets compiled into the React code below. That is why we import React. JSX code calls React.createElement()
-    //  React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!!!'))
+          {persons}
+        </div>
+      </StyleRoot>
+         // * JSX gets compiled into the React code below. That is why we import React. JSX code calls React.createElement()
+        // React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React App!!!'))
     );
   }
 }
